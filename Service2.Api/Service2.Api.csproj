@@ -4,10 +4,9 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>0879eee9-7da4-42a7-8fd0-3f808edd40e1</UserSecretsId>
+    <UserSecretsId>b17bdb0b-def7-4f69-8da2-86cbfb1acd10</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DockerComposeProjectPath>..\docker-compose.it.test.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
