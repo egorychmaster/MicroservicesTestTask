@@ -1,6 +1,17 @@
 version: '3.4'
 
 services:
+
+  db:
+    image: postgis/postgis:14-3.4-alpine
+    command: postgres -c listen_addresses='*' -c max_connections=200
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3.12.14-management
+    restart: always
+
+
   service1.api:
     image: ${DOCKER_REGISTRY-}service1api
     build:

@@ -1,6 +1,22 @@
 version: '3.4'
 
 services:
+
+  db:
+    ports:
+      - "8001:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dbpwd      
+
+  rabbitmq:
+    ports:
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+
   service1.api:
     ports:
       - "42000:80"
