@@ -1,11 +1,14 @@
-using Microsoft.OpenApi.Models;
+using FluentValidation.AspNetCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>())
+    ;
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
@@ -14,6 +17,7 @@ builder.Services.AddSwaggerGen(option =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
     option.IncludeXmlComments(xmlPath);
 });
+
 
 var app = builder.Build();
 
