@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Service.Domain.Contracts;
 
 namespace Service2.Api.NotificationHandling
@@ -23,6 +23,11 @@ namespace Service2.Api.NotificationHandling
             {
                 var eventContent = notification.Event;
 
+
+
+
+
+                _logger.LogInformation($"The message was received and stored in the database.\n Content:'{JsonConvert.SerializeObject(eventContent)}'.");
             }
             catch (Exception ex)
             {

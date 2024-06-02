@@ -1,5 +1,6 @@
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Service.Domain;
 using Service.Domain.Contracts;
 using Service1.Api.Models;
@@ -36,7 +37,7 @@ namespace Service1.Api.Controllers
             await endPoint.Send(contract);
             //await _bus.Publish(contract);
 
-
+            _logger.LogInformation($"The message has been sent to the bus.\n Content:'{JsonConvert.SerializeObject(contract)}'.");
             return Ok();
         }
     }
