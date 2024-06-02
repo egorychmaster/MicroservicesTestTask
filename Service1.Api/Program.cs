@@ -1,7 +1,7 @@
 using FluentValidation.AspNetCore;
 using MassTransit;
 using Serilog;
-using Service.Domain;
+using Service1.Api;
 using System.Reflection;
 
 // https://github.com/serilog/serilog-aspnetcore
@@ -32,14 +32,15 @@ try
     });
 
 
+    AppOptions.Configure(builder.Configuration);
     builder.Services.AddMassTransit(x =>
     {
         x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
         {
-            config.Host(new Uri(RabbitMqConsts.RabbitMqRootUri), h =>
+            config.Host(new Uri(AppOptions.RabbitMqRootUri), h =>
             {
-                h.Username(RabbitMqConsts.UserName);
-                h.Password(RabbitMqConsts.Password);
+                h.Username(AppOptions.RabbitMqUser);
+                h.Password(AppOptions.RabbitMqPassword);
             });
         }));
     });

@@ -1,7 +1,7 @@
 using GreenPipes;
 using MassTransit;
 using Serilog;
-using Service.Domain;
+using Service2.Api;
 using Service2.Api.Consumers;
 using System.Reflection;
 
@@ -28,17 +28,18 @@ try
         option.IncludeXmlComments(xmlPath);
     });
 
+    AppOptions.Configure(builder.Configuration);
     builder.Services.AddMassTransit(x =>
     {
         x.AddConsumer<UserCreatedConsumer>();
         x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
         {
-            cfg.Host(new Uri(RabbitMqConsts.RabbitMqRootUri), h =>
+            cfg.Host(new Uri(AppOptions.RabbitMqRootUri), h =>
             {
-                h.Username(RabbitMqConsts.UserName);
-                h.Password(RabbitMqConsts.Password);
+                h.Username(AppOptions.RabbitMqUser);
+                h.Password(AppOptions.RabbitMqPassword);
             });
-            cfg.ReceiveEndpoint("usersQueue", ep =>
+            cfg.ReceiveEndpoint(AppOptions.RabbitMqQueueUri /*"usersQueue"*/, ep =>
             {
                 ep.PrefetchCount = 16;
                 ep.UseMessageRetry(r => r.Interval(2, 100));

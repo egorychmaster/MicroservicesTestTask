@@ -1,7 +1,6 @@
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Service.Domain;
 using Service.Domain.Contracts;
 using Service1.Api.Models;
 
@@ -21,7 +20,7 @@ namespace Service1.Api.Controllers
         }
 
         [HttpPost]
-        public  async Task<IActionResult> Post([FromBody]UserInModel user)
+        public async Task<IActionResult> Post([FromBody] UserInModel user)
         {
             var contract = new UserContract
             {
@@ -32,10 +31,9 @@ namespace Service1.Api.Controllers
                 Email = user.Email
             };
 
-            Uri uri = new Uri(RabbitMqConsts.RabbitMqUri);
+            Uri uri = new Uri($"{AppOptions.RabbitMqRootUri}/{AppOptions.RabbitMqQueueUri}");
             var endPoint = await _bus.GetSendEndpoint(uri);
             await endPoint.Send(contract);
-            //await _bus.Publish(contract);
 
             _logger.LogInformation($"The message has been sent to the bus.\n Content:'{JsonConvert.SerializeObject(contract)}'.");
             return Ok();

@@ -23,6 +23,7 @@ services:
       - "42000:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_RabbitMQ_Connection=host=rabbitmq://rabbitmq;queue=usersQueue;user=guest;password=guest
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -32,6 +33,7 @@ services:
       - "42001:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_RabbitMQ_Connection=host=rabbitmq://rabbitmq;queue=usersQueue;user=guest;password=guest
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 
