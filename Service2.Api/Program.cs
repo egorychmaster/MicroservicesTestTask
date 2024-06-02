@@ -1,3 +1,7 @@
+using GreenPipes;
+using MassTransit;
+using Service.Domain;
+using Service2.Api.Consumers;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,30 @@ builder.Services.AddSwaggerGen(option =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
     option.IncludeXmlComments(xmlPath);
 });
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<UserCreatedConsumer>();
+    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+    {
+        cfg.Host(new Uri(RabbitMqConsts.RabbitMqRootUri), h =>
+        {
+            h.Username(RabbitMqConsts.UserName);
+            h.Password(RabbitMqConsts.Password);
+        });
+        cfg.ReceiveEndpoint("usersQueue", ep =>
+        {
+            ep.PrefetchCount = 16;
+            ep.UseMessageRetry(r => r.Interval(2, 100));
+            ep.ConfigureConsumer<UserCreatedConsumer>(provider);
+        });
+    }));
+});
+builder.Services.AddMassTransitHostedService();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+
 
 var app = builder.Build();
 

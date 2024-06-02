@@ -1,4 +1,6 @@
 using FluentValidation.AspNetCore;
+using MassTransit;
+using Service.Domain;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,20 @@ builder.Services.AddSwaggerGen(option =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
     option.IncludeXmlComments(xmlPath);
 });
+
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+    {
+        config.Host(new Uri(RabbitMqConsts.RabbitMqRootUri), h =>
+        {
+            h.Username(RabbitMqConsts.UserName);
+            h.Password(RabbitMqConsts.Password);
+        });
+    }));
+});
+builder.Services.AddMassTransitHostedService();
 
 
 var app = builder.Build();
