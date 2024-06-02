@@ -34,6 +34,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_RabbitMQ_Connection=host=rabbitmq://rabbitmq;queue=usersQueue;user=guest;password=guest
+      - CUSTOMCONNSTR_DefaultConnection=Host=db;Port=5432;Database=Service2;Username=postgres;Password=dbpwd
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 

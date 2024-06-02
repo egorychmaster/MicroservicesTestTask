@@ -1,8 +1,11 @@
 using GreenPipes;
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Service2.Api;
 using Service2.Api.Consumers;
+using Service2.Api.StartupTasks;
+using Service2.Infrastructure.Postgres;
 using System.Reflection;
 
 // https://github.com/serilog/serilog-aspnetcore
@@ -51,7 +54,9 @@ try
 
     builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-
+    builder.Services.AddDbContextFactory<Service2Context>(opt => opt.UseNpgsql(AppOptions.DefaultConnection));
+    // Инициализация БД.
+    builder.Services.AddHostedService<DatabaseInitialization>();
 
     var app = builder.Build();
 

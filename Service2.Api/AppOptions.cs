@@ -2,14 +2,17 @@
 {
     public static class AppOptions
     {
-        public static string RabbitMqRootUri { get; private set; } = string.Empty;// "rabbitmq://rabbitmq";
+        public static string DefaultConnection { get; private set; }
 
+        public static string RabbitMqRootUri { get; private set; } = string.Empty;// "rabbitmq://rabbitmq";
         public static string RabbitMqQueueUri { get; private set; } = string.Empty;// "rabbitmq://localhost/usersQueue";
         public static string RabbitMqUser { get; private set; } = string.Empty;// "guest";
         public static string RabbitMqPassword { get; private set; } = string.Empty;// "guest";
 
         public static void Configure(ConfigurationManager configuration)
         {
+            DefaultConnection = configuration.GetConnectionString("DefaultConnection");
+
             string rabbitMQConnection = configuration.GetValue<string>("RabbitMQ_Connection");
             var items = ParseConnectionString(rabbitMQConnection);
             RabbitMqRootUri = items["host"];

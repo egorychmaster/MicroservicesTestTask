@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
-using Service.Domain.Contracts;
+using Service.Contracts;
 using Service2.Api.NotificationHandling;
 
 namespace Service2.Api.Consumers
