@@ -32,7 +32,8 @@ namespace Service2.Infrastructure.Postgres.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(125)
+                        .HasColumnType("character varying(125)");
 
                     b.HasKey("Id");
 
@@ -49,21 +50,25 @@ namespace Service2.Infrastructure.Postgres.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("MiddleName")
-                        .HasColumnType("text");
+                        .HasMaxLength(125)
+                        .HasColumnType("character varying(125)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(125)
+                        .HasColumnType("character varying(125)");
 
                     b.Property<int?>("OrganizationId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(125)
+                        .HasColumnType("character varying(125)");
 
                     b.HasKey("Id");
 

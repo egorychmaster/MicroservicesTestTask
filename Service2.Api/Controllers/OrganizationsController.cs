@@ -28,5 +28,19 @@ namespace Service2.Api.Controllers
             var query = new GetOrganizationsQuery();
             return await _mediator.Send(query);
         }
+
+
+        // post запрос который связывает пользователя с организацией (таблица Organizations)
+
+        /// <summary>
+        /// Вернуть пользователей с пагинацией по организации.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("/{id}/Users/Filter")]
+        public async Task<ActionResult<UserFilterResult>> GetUsersByOrganization(int id, [FromBody] PagingInModel model)
+        {
+            var query = new GetUsersFilterQuery(id, skip: model.Skip, take: model.Take);
+            return await _mediator.Send(query);
+        }
     }
 }

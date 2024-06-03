@@ -17,7 +17,7 @@ namespace Service2.Infrastructure.Postgres.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "character varying(125)", maxLength: 125, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,10 +30,10 @@ namespace Service2.Infrastructure.Postgres.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    MiddleName = table.Column<string>(type: "text", nullable: true),
-                    Surname = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "character varying(125)", maxLength: 125, nullable: false),
+                    MiddleName = table.Column<string>(type: "character varying(125)", maxLength: 125, nullable: true),
+                    Surname = table.Column<string>(type: "character varying(125)", maxLength: 125, nullable: false),
+                    Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     OrganizationId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>

@@ -42,7 +42,7 @@ namespace Service2.Api.StartupTasks
                 MiddleName = "",
                 Surname = "да Винчи",
                 Email = "test_user3@mail.ru",
-                OrganizationId = 3,
+                OrganizationId = 2,
             },
             new User
             {
@@ -51,7 +51,7 @@ namespace Service2.Api.StartupTasks
                 MiddleName = "",
                 Surname = "Толстой",
                 Email = "lev@mail.ru",
-                OrganizationId = 1,
+                OrganizationId = 2,
             },
             new User
             {
@@ -78,7 +78,7 @@ namespace Service2.Api.StartupTasks
                 MiddleName = "Иванович",
                 Surname = "Иванов",
                 Email = "vanya@mail.ru",
-                OrganizationId = 1,
+                OrganizationId = 2,
             },
             new User
             {

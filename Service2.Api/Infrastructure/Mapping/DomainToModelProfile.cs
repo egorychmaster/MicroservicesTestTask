@@ -9,6 +9,7 @@ namespace Service2.Api.Infrastructure.Mapping
         public DomainToModelProfile()
         {
             CreateMap<Organization, OrganizationModel>();
+            CreateMap<User, UserModel>();
         }
     }
 }

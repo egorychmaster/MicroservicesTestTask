@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Service.Contracts;
 using Service2.Domain;
 
 namespace Service2.Infrastructure.Postgres
@@ -19,6 +20,10 @@ namespace Service2.Infrastructure.Postgres
                 eb.HasKey(e => e.Id);
 
                 // Limit the size of columns to use efficient database types
+                eb.Property(e => e.Name).HasMaxLength(LengthsConst.UserFldNameLenght).IsRequired();
+                eb.Property(e => e.MiddleName).HasMaxLength(LengthsConst.UserFldNameLenght);
+                eb.Property(e => e.Surname).HasMaxLength(LengthsConst.UserFldNameLenght).IsRequired();
+                eb.Property(e => e.Email).HasMaxLength(LengthsConst.UserFldFldEmailLenght);                
 
                 // Relationships
 
@@ -31,6 +36,9 @@ namespace Service2.Infrastructure.Postgres
             {
                 // Primary key
                 eb.HasKey(e => e.Id);
+
+                // Limit the size of columns to use efficient database types
+                eb.Property(e => e.Name).HasMaxLength(LengthsConst.OrganizationFldNameLenght).IsRequired();
 
                 // Maps to table
                 eb.ToTable("Organizations");

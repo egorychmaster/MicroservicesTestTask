@@ -62,7 +62,8 @@ try
     // Инициализация БД.
     builder.Services.AddHostedService<DatabaseInitialization>();
 
-    builder.Services.AddScoped<IOrganizationService, OrganizationService>();
+    builder.Services.AddScoped<IOrganizationService, OrganizationService>(); 
+    builder.Services.AddScoped<IUserService, UserService>(); 
 
     var config = new MapperConfiguration(cfg =>
     {
