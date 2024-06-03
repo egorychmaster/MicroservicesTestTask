@@ -35,6 +35,60 @@ namespace Service2.Api.StartupTasks
                 Email = "anj@mail.ru",
                 OrganizationId = 2,
             },
+            new User
+            {
+                Id = 3,
+                Name = "Леонардо",
+                MiddleName = "",
+                Surname = "да Винчи",
+                Email = "test_user3@mail.ru",
+                OrganizationId = 3,
+            },
+            new User
+            {
+                Id = 4,
+                Name = "Лев",
+                MiddleName = "",
+                Surname = "Толстой",
+                Email = "lev@mail.ru",
+                OrganizationId = 1,
+            },
+            new User
+            {
+                Id = 5,
+                Name = "Пабло",
+                MiddleName = "",
+                Surname = "Эскобар",
+                Email = "pabloDollars@mail.ru",
+                OrganizationId = 4,
+            },
+            new User
+            {
+                Id = 6,
+                Name = "Стив",
+                MiddleName = "",
+                Surname = "Джобс",
+                Email = "jobs@mail.ru",
+                OrganizationId = 5,
+            },
+            new User
+            {
+                Id = 7,
+                Name = "Иван",
+                MiddleName = "Иванович",
+                Surname = "Иванов",
+                Email = "vanya@mail.ru",
+                OrganizationId = 1,
+            },
+            new User
+            {
+                Id = 8,
+                Name = "Василий",
+                MiddleName = "",
+                Surname = "Сидоров",
+                Email = "sidorow@mail.ru",
+                OrganizationId = 4,
+            },
         };
 
         private static IEnumerable<Organization> Organizations => new List<Organization>()
