@@ -11,12 +11,10 @@ namespace Service2.Api.Controllers
     public class OrganizationsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<OrganizationsController> _logger;
 
-        public OrganizationsController(IMediator mediator, ILogger<OrganizationsController> logger)
+        public OrganizationsController(IMediator mediator)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         /// <summary>
@@ -24,7 +22,7 @@ namespace Service2.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<List<OrganizationModel>>> Get()
+        public async Task<ActionResult<List<OrganizationModel>>> GetAsync()
         {
             var query = new GetOrganizationsQuery();
             return await _mediator.Send(query);
@@ -35,7 +33,7 @@ namespace Service2.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("/{id}/Users/Filter")]
-        public async Task<ActionResult<UserFilterResult>> GetUsersByOrganization(int id, [FromBody] PagingInModel model)
+        public async Task<ActionResult<UserFilterResult>> GetUsersByOrganizationAsync(int id, [FromBody] PagingInModel model)
         {
             var query = new GetUsersFilterQuery(id, skip: model.Skip, take: model.Take);
             return await _mediator.Send(query);
@@ -48,9 +46,9 @@ namespace Service2.Api.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost("{id}/User/{userId}")]
-        public async Task<ActionResult> ChageOrganizationForUser(int id, int userId)
+        public async Task<ActionResult> ChangeOrganizationForUserAsync(int id, int userId)
         {
-            var command = new ChageOrganizationForUserCommand(id, userId);
+            var command = new ChangeOrganizationForUserCommand(id, userId);
             var result = await _mediator.Send(command);
             return Ok();
         }

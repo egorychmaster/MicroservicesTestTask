@@ -17,7 +17,7 @@ namespace Service2.Api.StartupTasks
 
         private static IEnumerable<User> Users => new List<User>()
         {
-            new User
+            new()
             {
                 Id = 1,
                 Name = "Вася",
@@ -26,7 +26,7 @@ namespace Service2.Api.StartupTasks
                 Email = "vasyaKrut@mail.ru",
                 OrganizationId = 1,
             },
-            new User
+            new()
             {
                 Id = 2,
                 Name = "Анжела",
@@ -35,7 +35,7 @@ namespace Service2.Api.StartupTasks
                 Email = "anj@mail.ru",
                 OrganizationId = 2,
             },
-            new User
+            new()
             {
                 Id = 3,
                 Name = "Леонардо",
@@ -44,7 +44,7 @@ namespace Service2.Api.StartupTasks
                 Email = "test_user3@mail.ru",
                 OrganizationId = 2,
             },
-            new User
+            new()
             {
                 Id = 4,
                 Name = "Лев",
@@ -53,7 +53,7 @@ namespace Service2.Api.StartupTasks
                 Email = "lev@mail.ru",
                 OrganizationId = 2,
             },
-            new User
+            new()
             {
                 Id = 5,
                 Name = "Пабло",
@@ -62,7 +62,7 @@ namespace Service2.Api.StartupTasks
                 Email = "pabloDollars@mail.ru",
                 OrganizationId = 4,
             },
-            new User
+            new()
             {
                 Id = 6,
                 Name = "Стив",
@@ -71,7 +71,7 @@ namespace Service2.Api.StartupTasks
                 Email = "jobs@mail.ru",
                 OrganizationId = 5,
             },
-            new User
+            new()
             {
                 Id = 7,
                 Name = "Иван",
@@ -80,7 +80,7 @@ namespace Service2.Api.StartupTasks
                 Email = "vanya@mail.ru",
                 OrganizationId = 2,
             },
-            new User
+            new()
             {
                 Id = 8,
                 Name = "Василий",
@@ -93,27 +93,27 @@ namespace Service2.Api.StartupTasks
 
         private static IEnumerable<Organization> Organizations => new List<Organization>()
         {
-            new Organization
+            new()
             {
                 Id = 1,
                 Name = "Рога и Копыта"
             },
-            new Organization
+            new()
             {
                 Id = 2,
                 Name = "Apple",
             },
-            new Organization
+            new()
             {
                 Id = 3,
                 Name = "Microsoft",
             },
-            new Organization
+            new()
             {
                 Id = 4,
                 Name = "Adidas",
             },
-            new Organization
+            new()
             {
                 Id = 5,
                 Name = "Nike",
