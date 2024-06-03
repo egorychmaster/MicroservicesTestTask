@@ -5,7 +5,7 @@ using Service.Contracts;
 using Service2.Domain;
 using Service2.Infrastructure.Postgres;
 
-namespace Service2.Api.NotificationHandling
+namespace Service2.Api.Application.NotificationHandling
 {
     public class UserCreatedNotificationHandler : INotificationHandler<Notification<UserContract>>
     {

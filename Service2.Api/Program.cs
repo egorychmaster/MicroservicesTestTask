@@ -1,9 +1,13 @@
+using AutoMapper;
 using GreenPipes;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Service2.Api;
-using Service2.Api.Consumers;
+using Service2.Api.Application.MassTransitHandling;
+using Service2.Api.Infrastructure.Mapping;
+using Service2.Api.Infrastructure.Services;
+using Service2.Api.Infrastructure.Services.Interfaces;
 using Service2.Api.StartupTasks;
 using Service2.Infrastructure.Postgres;
 using System.Reflection;
@@ -57,6 +61,15 @@ try
     builder.Services.AddDbContextFactory<Service2Context>(opt => opt.UseNpgsql(AppOptions.DefaultConnection));
     // Инициализация БД.
     builder.Services.AddHostedService<DatabaseInitialization>();
+
+    builder.Services.AddScoped<IOrganizationService, OrganizationService>();
+
+    var config = new MapperConfiguration(cfg =>
+    {
+        cfg.AddProfile<DomainToModelProfile>();
+    });
+    builder.Services.AddSingleton<IMapper>(new Mapper(config));
+
 
     var app = builder.Build();
 

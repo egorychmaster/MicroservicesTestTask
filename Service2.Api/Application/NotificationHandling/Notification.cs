@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Service2.Api.NotificationHandling
+namespace Service2.Api.Application.NotificationHandling
 {
     public class Notification<T> : INotification
     {
