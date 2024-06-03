@@ -15,8 +15,10 @@ namespace Service2.Api.StartupTasks
         {
             try
             {
-                using var _dbContext = _dbContextFactory.CreateDbContext();
+                using Service2Context _dbContext = _dbContextFactory.CreateDbContext();
                 await _dbContext.Database.MigrateAsync();
+
+                await InitializeDefaultData.Initialize(_dbContext);
             }
             catch (Exception ex)
             {
