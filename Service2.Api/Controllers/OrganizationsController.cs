@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Service2.Api.Application.Commands;
 using Service2.Api.Application.Models;
 using Service2.Api.Application.Queries;
 
@@ -29,9 +30,6 @@ namespace Service2.Api.Controllers
             return await _mediator.Send(query);
         }
 
-
-        // post запрос который связывает пользователя с организацией (таблица Organizations)
-
         /// <summary>
         /// Вернуть пользователей с пагинацией по организации.
         /// </summary>
@@ -41,6 +39,20 @@ namespace Service2.Api.Controllers
         {
             var query = new GetUsersFilterQuery(id, skip: model.Skip, take: model.Take);
             return await _mediator.Send(query);
+        }
+
+        /// <summary>
+        /// Связать пользователя с организацией.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost("{id}/User/{userId}")]
+        public async Task<ActionResult> ChageOrganizationForUser(int id, int userId)
+        {
+            var command = new ChageOrganizationForUserCommand(id, userId);
+            var result = await _mediator.Send(command);
+            return Ok();
         }
     }
 }

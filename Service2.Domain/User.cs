@@ -21,6 +21,15 @@
 
 
         public int? OrganizationId { get; set; }
-        public Organization? Organization { get; set; }
+        public Organization? Organization { get; private set; }
+
+
+        public void SetOrganization(Organization organization)
+        {
+            if (organization == null) throw new ArgumentNullException(nameof(organization));
+
+            OrganizationId = organization.Id;
+            Organization = organization;
+        }
     }
 }
