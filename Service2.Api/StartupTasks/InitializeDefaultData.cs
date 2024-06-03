@@ -5,14 +5,37 @@ namespace Service2.Api.StartupTasks
 {
     public class InitializeDefaultData
     {
-        public static async Task Initialize(Service2Context dbContext)
+        public static async Task Initialize(Service2Context db)
         {
-            if (dbContext.Organizations.Any())
+            if (db.Organizations.Any())
                 return;
 
-            await dbContext.Organizations.AddRangeAsync(Organizations);
-            await dbContext.SaveChangesAsync();
+            await db.Organizations.AddRangeAsync(Organizations);
+            await db.Users.AddRangeAsync(Users);
+            await db.SaveChangesAsync();
         }
+
+        private static IEnumerable<User> Users => new List<User>()
+        {
+            new User
+            {
+                Id = 1,
+                Name = "Вася",
+                MiddleName = "Алибабаевич",
+                Surname = "Пупкин",
+                Email = "vasyaKrut@mail.ru",
+                OrganizationId = 1,
+            },
+            new User
+            {
+                Id = 2,
+                Name = "Анжела",
+                MiddleName = "Леонидовна",
+                Surname = "Балалайкина",
+                Email = "anj@mail.ru",
+                OrganizationId = 2,
+            },
+        };
 
         private static IEnumerable<Organization> Organizations => new List<Organization>()
         {
