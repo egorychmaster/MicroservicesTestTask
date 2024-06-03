@@ -1,3 +1,5 @@
+Тестовое задание
+
 Стэк:
 -net Core
 -MediatR
@@ -35,3 +37,25 @@
 Ключ организации + Название организации
 
 Написать юнит тесты
+
+
+
+
+Реализация.
+Запустить проект "docker-compose.it.test" в докере.
+
+Сервисы будут доступны по URL:
+- Service1
+http://localhost:42000/swagger/index.html
+
+- Service2
+http://localhost:42001/swagger/index.html
+
+- RabbitMq
+http://localhost:15672/#/queues
+
+- Postgres
+localhost
+Порт: 8001
+Пользователь: postgres
+Пароль: dbpwd
