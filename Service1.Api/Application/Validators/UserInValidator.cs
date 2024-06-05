@@ -8,7 +8,7 @@ namespace Service1.Api.Application.Validators
     {
         public UserInValidator()
         {
-            RuleFor(e => e.Number).NotNull().Must(n => n > 0).WithMessage("The 'number' must be greater than zero");
+            RuleFor(e => e.Id).NotNull().Must(n => n > 0).WithMessage("The 'id' must be greater than zero.");
             RuleFor(e => e.Name).NotNull().NotEmpty().MaximumLength(LengthsConst.UserFldNameLenght);
             RuleFor(e => e.MiddleName).MaximumLength(LengthsConst.UserFldFldMiddleNameLenght);
             RuleFor(e => e.Surname).NotNull().NotEmpty().MaximumLength(LengthsConst.UserFldFldSurnameLenght);

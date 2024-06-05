@@ -3,22 +3,22 @@
     public record UserContract
     {
         /// <summary>
-        /// Номер
+        /// Идентификатор пользователя.
         /// </summary>
-        public int Number { get; init; }
+        public int Id { get; init; }
 
         /// <summary> 
-        /// Имя 
+        /// Имя.
         /// </summary>
         public string Name { get; init; }
 
         /// <summary> 
-        /// Отчество 
+        /// Отчество.
         /// </summary>
         public string? MiddleName { get; init; }
 
         /// <summary> 
-        /// Фамилия 
+        /// Фамилия.
         /// </summary>
         public string Surname { get; init; }
 

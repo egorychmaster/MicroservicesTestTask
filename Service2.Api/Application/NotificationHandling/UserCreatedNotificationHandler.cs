@@ -24,12 +24,12 @@ namespace Service2.Api.Application.NotificationHandling
             {
                 UserContract eventUser = notification.Event;
 
-                var exist = await _db.Users.FirstOrDefaultAsync(e => e.Id == eventUser.Number);
+                var exist = await _db.Users.FirstOrDefaultAsync(e => e.Id == eventUser.Id);
                 if (exist == null)
                 {
                     _db.Users.Add(new User()
                     {
-                        Id = eventUser.Number,
+                        Id = eventUser.Id,
                         Name = eventUser.Name,
                         MiddleName = eventUser.MiddleName,
                         Surname = eventUser.Surname,

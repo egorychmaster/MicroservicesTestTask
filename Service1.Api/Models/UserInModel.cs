@@ -5,7 +5,7 @@
         /// <summary>
         /// Номер
         /// </summary>
-        public int Number { get; set; }
+        public int Id { get; set; }
 
         /// <summary> 
         /// Имя 

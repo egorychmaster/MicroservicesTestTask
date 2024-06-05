@@ -24,7 +24,7 @@ namespace Service1.Api.Controllers
         {
             var contract = new UserContract
             {
-                Number = user.Number,
+                Id = user.Id,
                 Name = user.Name,
                 MiddleName = user.MiddleName,
                 Surname = user.Surname,
