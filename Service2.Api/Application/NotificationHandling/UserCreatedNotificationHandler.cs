@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Service.Contracts;
+using Service.Common.Contracts;
 using Service2.Domain;
 using Service2.Infrastructure.Postgres;
 

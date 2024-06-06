@@ -1,8 +1,7 @@
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Service.Contracts;
 using Service1.Api.Models;
+using Service1.BLL.DTO;
+using Service1.BLL.Services;
 
 namespace Service1.Api.Controllers
 {
@@ -10,32 +9,26 @@ namespace Service1.Api.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IBus _bus;
-        private readonly ILogger<UsersController> _logger;
+        private readonly IUserService _userService;
 
-        public UsersController(IBus bus, ILogger<UsersController> logger)
+        public UsersController(IUserService userService)
         {
-            _bus = bus;
-            _logger = logger;
+            _userService = userService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] UserInModel user)
+        public async Task<IActionResult> PostAsync([FromBody] UserModel user)
         {
-            var contract = new UserContract
+            var userDto = new UserDTO()
             {
                 Id = user.Id,
                 Name = user.Name,
-                MiddleName = user.MiddleName,
+                MiddleName = user.Name,
                 Surname = user.Surname,
                 Email = user.Email
             };
+            await _userService.SendToBusAsync(userDto);
 
-            Uri uri = new Uri($"{AppOptions.RabbitMqRootUri}/{AppOptions.RabbitMqQueueUri}");
-            var endPoint = await _bus.GetSendEndpoint(uri);
-            await endPoint.Send(contract);
-
-            _logger.LogInformation($"The message has been sent to the bus.\n Content:'{JsonConvert.SerializeObject(contract)}'.");
             return Ok();
         }
     }

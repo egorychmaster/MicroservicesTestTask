@@ -1,9 +1,9 @@
 ﻿namespace Service1.Api.Models
 {
-    public class UserInModel
+    public class UserModel
     {
         /// <summary>
-        /// Номер
+        /// Идентификатор.
         /// </summary>
         public int Id { get; set; }
 

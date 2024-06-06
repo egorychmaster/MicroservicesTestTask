@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using MassTransit;
 using Serilog;
 using Service1.Api;
+using Service1.BLL.Services;
 using System.Reflection;
 
 // https://github.com/serilog/serilog-aspnetcore
@@ -19,8 +20,7 @@ try
     // Add services to the container.
 
     builder.Services.AddControllers()
-        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>())
-        ;
+        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
@@ -45,6 +45,12 @@ try
         }));
     });
     builder.Services.AddMassTransitHostedService();
+
+    builder.Services.AddScoped<IUserService>(x =>
+        new UserService(x.GetRequiredService<IBus>(),
+        x.GetRequiredService<ILogger<UserService>>(),
+        $"{AppOptions.RabbitMqRootUri}/{AppOptions.RabbitMqQueueUri}"
+        ));
 
 
     var app = builder.Build();

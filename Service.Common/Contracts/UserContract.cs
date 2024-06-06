@@ -1,4 +1,4 @@
-﻿namespace Service.Contracts
+﻿namespace Service.Common.Contracts
 {
     public record UserContract
     {

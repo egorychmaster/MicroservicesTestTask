@@ -1,6 +1,6 @@
-﻿namespace Service.Contracts
+﻿namespace Service.Common
 {
-    public class LengthsConst
+    public class TableFieldsConst
     {
         // Таблица Users
         public const int UserFldNameLenght = 125;

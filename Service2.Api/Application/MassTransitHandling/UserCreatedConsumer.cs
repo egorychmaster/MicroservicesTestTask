@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
-using Service.Contracts;
+using Service.Common.Contracts;
 using Service2.Api.Application.NotificationHandling;
 
 namespace Service2.Api.Application.MassTransitHandling
