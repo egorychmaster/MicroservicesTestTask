@@ -2,7 +2,7 @@
 using Service.Common;
 using Service1.Api.Models;
 
-namespace Service1.Api.Application.Validators
+namespace Service1.Api.Validators
 {
     public class UserValidator : AbstractValidator<UserModel>
     {

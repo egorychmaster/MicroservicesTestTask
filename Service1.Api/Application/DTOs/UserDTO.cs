@@ -1,4 +1,4 @@
-﻿namespace Service1.BLL.DTO
+﻿namespace Service1.Api.Application.DTOs
 {
     public record UserDTO
     {

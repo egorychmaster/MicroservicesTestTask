@@ -2,7 +2,8 @@ using FluentValidation.AspNetCore;
 using MassTransit;
 using Serilog;
 using Service1.Api;
-using Service1.BLL.Services;
+using Service1.Api.Application;
+using Service1.Api.Application.Services;
 using System.Reflection;
 
 // https://github.com/serilog/serilog-aspnetcore

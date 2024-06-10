@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Service1.Api.Application;
+using Service1.Api.Application.DTOs;
 using Service1.Api.Models;
-using Service1.BLL.DTO;
-using Service1.BLL.Services;
 
 namespace Service1.Api.Controllers
 {

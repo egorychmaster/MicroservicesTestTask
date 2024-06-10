@@ -1,10 +1,9 @@
 ﻿using MassTransit;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Service.Common.Contracts;
-using Service1.BLL.DTO;
+using Service1.Api.Application.DTOs;
 
-namespace Service1.BLL.Services
+namespace Service1.Api.Application.Services
 {
     public class UserService : IUserService
     {
