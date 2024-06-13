@@ -1,4 +1,4 @@
-# Тестовое задание.
+# Тестовое задание DockerAndRabbitMq.
 
 ### Стэк:
 
@@ -6,7 +6,6 @@
 - MediatR
 - MassTransit(реализует паттерн шины для RabbitMq)
 - AutoMapper (приведение одних типов классов к другим)
-- Export documents as Markdown, HTML and PDF
 - Serilog
 - Entity Framework
 - Docker
