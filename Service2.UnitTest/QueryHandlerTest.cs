@@ -5,7 +5,7 @@ using Service2.Api.Application.Queries;
 using Service2.Api.Infrastructure.Mapping;
 using Service2.Api.Infrastructure.Services;
 using Service2.Domain;
-using Service2.Infrastructure.Postgres;
+using Service2.Infrastructure.Database;
 
 namespace Service2.UnitTest
 {

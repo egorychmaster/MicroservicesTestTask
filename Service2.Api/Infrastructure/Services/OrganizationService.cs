@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Service2.Api.Infrastructure.Services.Interfaces;
 using Service2.Domain;
-using Service2.Infrastructure.Postgres;
+using Service2.Infrastructure.Database;
 
 namespace Service2.Api.Infrastructure.Services
 {

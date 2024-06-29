@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Service2.Infrastructure.Postgres
+namespace Service2.Infrastructure.Database
 {
     /// <summary>
     /// Фабрика времени разработки (для миграции Service2Context).

@@ -27,7 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Service2.Infrastructure.Postgres\Service2.Infrastructure.Postgres.csproj" />
+    <ProjectReference Include="..\Service2.Application\Service2.Application.csproj" />
+    <ProjectReference Include="..\Service2.Infrastructure\Service2.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

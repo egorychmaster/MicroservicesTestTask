@@ -2,7 +2,7 @@
 using Service.Common;
 using Service2.Domain;
 
-namespace Service2.Infrastructure.Postgres
+namespace Service2.Infrastructure.Database
 {
     public class Service2Context : DbContext
     {

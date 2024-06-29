@@ -1,8 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Service2.Api.Application.Commands;
 using Service2.Api.Application.Models;
 using Service2.Api.Application.Queries;
+using Service2.Application.Commands.Organizations;
 
 namespace Service2.Api.Controllers
 {

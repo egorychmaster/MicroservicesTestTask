@@ -4,12 +4,15 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Service2.Api;
-using Service2.Api.Application.MassTransitHandling;
 using Service2.Api.Infrastructure.Mapping;
 using Service2.Api.Infrastructure.Services;
 using Service2.Api.Infrastructure.Services.Interfaces;
+using Service2.Api.IntegrationEvents.MassTransitHandling;
 using Service2.Api.StartupTasks;
-using Service2.Infrastructure.Postgres;
+using Service2.Application.Commands.Users;
+using Service2.Domain;
+using Service2.Infrastructure.Database;
+using Service2.Infrastructure.Repositories;
 using System.Reflection;
 
 // https://github.com/serilog/serilog-aspnetcore
@@ -46,7 +49,7 @@ try
                 h.Username(AppOptions.RabbitMqUser);
                 h.Password(AppOptions.RabbitMqPassword);
             });
-            cfg.ReceiveEndpoint(AppOptions.RabbitMqQueueUri /*"usersQueue"*/, ep =>
+            cfg.ReceiveEndpoint(AppOptions.RabbitMqQueueUri, ep =>
             {
                 ep.PrefetchCount = 16;
                 ep.UseMessageRetry(r => r.Interval(2, 100));
@@ -56,14 +59,25 @@ try
     });
     builder.Services.AddMassTransitHostedService();
 
-    builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+    // Медиатор ищет обработчики в этих сборках.
+    var assemblies = new Assembly[]
+    {
+        typeof(Program).GetTypeInfo().Assembly,
+        typeof(UserCreateOrUpdateCommand).GetTypeInfo().Assembly,
+    };
+    builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies));
 
     builder.Services.AddDbContextFactory<Service2Context>(opt => opt.UseNpgsql(AppOptions.DefaultConnection));
     // Инициализация БД.
     builder.Services.AddHostedService<DatabaseInitialization>();
 
-    builder.Services.AddScoped<IOrganizationService, OrganizationService>(); 
-    builder.Services.AddScoped<IUserService, UserService>(); 
+    // Services.
+    builder.Services.AddScoped<IOrganizationService, OrganizationService>();
+    builder.Services.AddScoped<IUserService, UserService>();
+
+    // Repositories.
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
 
     var config = new MapperConfiguration(cfg =>
     {
