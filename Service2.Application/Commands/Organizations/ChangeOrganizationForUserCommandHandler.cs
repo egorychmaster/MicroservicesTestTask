@@ -5,10 +5,11 @@ namespace Service2.Application.Commands.Organizations
 {
     public class ChageOrganizationForUserCommandHandler : IRequestHandler<ChangeOrganizationForUserCommand, bool>
     {
-        private readonly IOrganizationRepository _organizationRepository;
-        private readonly IUserRepository _userRepository;
-        public ChageOrganizationForUserCommandHandler(IOrganizationRepository organizationRepository,
-            IUserRepository userRepository)
+        private readonly IOrganizationCommandsRepository _organizationRepository;
+        private readonly IUserCommandsRepository _userRepository;
+        
+        public ChageOrganizationForUserCommandHandler(IOrganizationCommandsRepository organizationRepository,
+            IUserCommandsRepository userRepository)
         {
             _organizationRepository = organizationRepository ?? throw new ArgumentNullException(nameof(organizationRepository));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));

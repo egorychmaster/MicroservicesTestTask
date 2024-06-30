@@ -1,6 +1,6 @@
-﻿namespace Service2.Api.Application.Models
+﻿namespace Service2.Application.Queries.Users.GetUsersFilter
 {
-    public class UserModel
+    public class UserDTO
     {
         public int Id { get; set; }
 

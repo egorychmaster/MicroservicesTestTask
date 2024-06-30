@@ -2,7 +2,7 @@
 
 namespace Service2.Domain
 {
-    public interface IOrganizationRepository : IRepository
+    public interface IOrganizationCommandsRepository : ICommandsRepository
     {
         Task<Organization> GetAsync(int id);
     }

@@ -7,9 +7,10 @@ namespace Service2.Application.Commands.Users
 {
     public class UserCreateOrUpdateCommandHandler : IRequestHandler<UserCreateOrUpdateCommand, bool>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserCommandsRepository _userRepository;
         private readonly ILogger _logger;
-        public UserCreateOrUpdateCommandHandler(IUserRepository userRepository, ILogger<UserCreateOrUpdateCommandHandler> logger)
+        
+        public UserCreateOrUpdateCommandHandler(IUserCommandsRepository userRepository, ILogger<UserCreateOrUpdateCommandHandler> logger)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

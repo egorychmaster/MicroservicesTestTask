@@ -3,23 +3,18 @@ using Service2.Infrastructure.Database;
 
 namespace Service2.Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class OrganizationCommandsRepository : IOrganizationCommandsRepository
     {
         private readonly Service2Context _context;
 
-        public UserRepository(Service2Context context)
+        public OrganizationCommandsRepository(Service2Context context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<User> GetAsync(int id)
+        public async Task<Organization> GetAsync(int id)
         {
-            return await _context.Users.FindAsync(id);
-        }
-
-        public void Add(User item)
-        {
-            _context.Users.Add(item);
+            return await _context.Organizations.FindAsync(id);
         }
 
         public async Task SaveChangesAsync(CancellationToken cancellationToken = default)

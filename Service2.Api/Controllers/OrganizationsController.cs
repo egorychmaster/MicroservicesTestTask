@@ -1,8 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Service2.Api.Application.Models;
-using Service2.Api.Application.Queries;
+using Service2.Api.Models;
 using Service2.Application.Commands.Organizations;
+using Service2.Application.Queries.Organizations.GetOrganizations;
+using Service2.Application.Queries.Users.GetUsersFilter;
 
 namespace Service2.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace Service2.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<List<OrganizationModel>>> GetAsync()
+        public async Task<ActionResult<List<OrganizationDTO>>> GetAsync()
         {
             var query = new GetOrganizationsQuery();
             return await _mediator.Send(query);
@@ -33,7 +34,7 @@ namespace Service2.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("/{id}/Users/Filter")]
-        public async Task<ActionResult<UserFilterResult>> GetUsersByOrganizationAsync(int id, [FromBody] PagingInModel model)
+        public async Task<ActionResult<UserFilterResultDTO>> GetUsersByOrganizationAsync(int id, [FromBody] PagingModel model)
         {
             var query = new GetUsersFilterQuery(id, skip: model.Skip, take: model.Take);
             return await _mediator.Send(query);

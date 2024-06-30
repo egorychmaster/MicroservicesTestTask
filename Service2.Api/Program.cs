@@ -4,15 +4,16 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Service2.Api;
-using Service2.Api.Infrastructure.Mapping;
-using Service2.Api.Infrastructure.Services;
-using Service2.Api.Infrastructure.Services.Interfaces;
 using Service2.Api.IntegrationEvents.MassTransitHandling;
 using Service2.Api.StartupTasks;
 using Service2.Application.Commands.Users;
+using Service2.Application.Mapping;
+using Service2.Application.Queries.Organizations;
+using Service2.Application.Queries.Users;
 using Service2.Domain;
 using Service2.Infrastructure.Database;
 using Service2.Infrastructure.Repositories;
+using Service2.Infrastructure.RepositoriesQueries;
 using System.Reflection;
 
 // https://github.com/serilog/serilog-aspnetcore
@@ -71,17 +72,17 @@ try
     // Инициализация БД.
     builder.Services.AddHostedService<DatabaseInitialization>();
 
-    // Services.
-    builder.Services.AddScoped<IOrganizationService, OrganizationService>();
-    builder.Services.AddScoped<IUserService, UserService>();
+    // Repositories queries.
+    builder.Services.AddScoped<IOrganizationQueriesRepository, OrganizationQueriesRepository>();
+    builder.Services.AddScoped<IUserQueriesRepository, UserQueriesRepository>();    
 
-    // Repositories.
-    builder.Services.AddScoped<IUserRepository, UserRepository>();
-    builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+    // Repositories commands.
+    builder.Services.AddScoped<IUserCommandsRepository, UserCommandsRepository>();
+    builder.Services.AddScoped<IOrganizationCommandsRepository, OrganizationCommandsRepository>();
 
     var config = new MapperConfiguration(cfg =>
     {
-        cfg.AddProfile<DomainToModelProfile>();
+        cfg.AddProfile<DomainToDTOProfile>();
     });
     builder.Services.AddSingleton<IMapper>(new Mapper(config));
 

@@ -1,9 +1,9 @@
 ﻿using Service2.Domain;
 using System.Linq.Expressions;
 
-namespace Service2.Api.Infrastructure.Services.Interfaces
+namespace Service2.Application.Queries.Users
 {
-    public interface IUserService
+    public interface IUserQueriesRepository
     {
         /// <summary>
         /// Вернуть список пользователей с пагинацией.

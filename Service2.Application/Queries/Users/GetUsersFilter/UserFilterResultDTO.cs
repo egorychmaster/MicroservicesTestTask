@@ -1,11 +1,11 @@
-﻿namespace Service2.Api.Application.Models
+﻿namespace Service2.Application.Queries.Users.GetUsersFilter
 {
-    public class UserFilterResult
+    public class UserFilterResultDTO
     {
         /// <summary>
         /// Элементы
         /// </summary>
-        public IEnumerable<UserModel> Items { get; set; }
+        public IEnumerable<UserDTO> Items { get; set; }
 
         /// <summary>
         /// Пропущено элементов

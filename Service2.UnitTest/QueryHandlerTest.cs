@@ -1,11 +1,10 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Service2.Api.Application.Models;
-using Service2.Api.Application.Queries;
-using Service2.Api.Infrastructure.Mapping;
-using Service2.Api.Infrastructure.Services;
+using Service2.Application.Mapping;
+using Service2.Application.Queries.Users.GetUsersFilter;
 using Service2.Domain;
 using Service2.Infrastructure.Database;
+using Service2.Infrastructure.RepositoriesQueries;
 
 namespace Service2.UnitTest
 {
@@ -26,7 +25,7 @@ namespace Service2.UnitTest
 
             MapperConfiguration _config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<DomainToModelProfile>();
+                cfg.AddProfile<DomainToDTOProfile>();
             });
             _mapper = _config.CreateMapper();
         }
@@ -41,19 +40,19 @@ namespace Service2.UnitTest
             var totalCount = 3;
 
             var service2Context = new Service2Context(_dbOptions);
-            UserService _userService = new UserService(service2Context);
+            var _userQueries = new UserQueriesRepository(service2Context);
 
             //Act
-            GetUsersFilterQueryHandler _QueryHandler = new GetUsersFilterQueryHandler(_userService, _mapper);
+            var _QueryHandler = new GetUsersFilterQueryHandler(_userQueries, _mapper);
 
             var filterQuery = new GetUsersFilterQuery(organizationId, skip: skip, take: take);
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken token = cancelTokenSource.Token;
 
-            UserFilterResult result = await _QueryHandler.Handle(filterQuery, token);
+            UserFilterResultDTO result = await _QueryHandler.Handle(filterQuery, token);
 
             //Assert
-            Assert.IsType<UserFilterResult>(result);
+            Assert.IsType<UserFilterResultDTO>(result);
             Assert.Equal(skip, result.Skipped);
             Assert.Equal(take, result.Taken);
             Assert.Equal(totalCount, result.TotalCount);
