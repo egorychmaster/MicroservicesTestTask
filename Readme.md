@@ -1,4 +1,5 @@
-# Тестовое задание DockerAndRabbitMq.
+# Тестовое задание Microservices-Dotnet-Docker-RabbitMq-CleanArchitecture.
+## Test task for creating two microservices in Docker. Microservice Service2 using Clean Architecture.
 
 ### Стэк:
 
@@ -40,8 +41,26 @@
 Написать юнит тесты
 
 
-# Реализация.
-Запустить проект "docker-compose.it.test" в докере.
+# Реализация (Implementation).
+
+Создано 2 микросервиса: Service1 и Service2.
+
+#### Service1
+Прост и реализован в одном проекте "Service1.Api".
+
+#### Service2
+Service2 написан борлее сложен и написан показательно.
+Использует чистую Clean (луковую/гексагональную) архитектуру.
+##### Clean Architecture
+![projects_dependencies](docs/clean_architecture.jpg)
+
+##### CQRS
+Используется паттерн CQRS для разделения интерфейса уровня инфраструктуры на репозиторий команд и репозиторий запросов.
+Commands/Queries используют паттерн посредник для слабой связанности между слоями сервиса с помощью библиотеки MediatR.
+
+
+## How to run application
+Запустить проект "docker-compose" в докере.
 
 Сервисы будут доступны по URL:
 |  | URI |
